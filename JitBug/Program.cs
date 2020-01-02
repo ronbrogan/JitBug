@@ -14,7 +14,7 @@ namespace JitBug
                 var bug = Bug.Create();
                 bug.MutateBroken();
 
-                Console.WriteLine(bug.Verticies[0].Position);
+                Console.WriteLine(bug.Vertices[0].Position);
             }
 
             // Works
@@ -23,7 +23,7 @@ namespace JitBug
                 var bug = Bug.Create();
                 bug.MutateWorks();
 
-                Console.WriteLine(bug.Verticies[0].Position);
+                Console.WriteLine(bug.Vertices[0].Position);
             }
 
             Console.ReadLine();
@@ -36,29 +36,29 @@ namespace JitBug
         {
             return new Bug
             {
-                Verticies = Enumerable.Range(1, 100).Select(i => new Vertex(new Vector3(i), Vector2.One)).ToArray()
+                Vertices = Enumerable.Range(1, 100).Select(i => new Vertex(new Vector3(i), Vector2.One)).ToArray()
             };
         }
 
-        public Vertex[] Verticies { get; set; }
+        public Vertex[] Vertices { get; set; }
 
         public void MutateBroken()
         {
-            for (var i = 0; i < Verticies.Length; i++)
+            for (var i = 0; i < Vertices.Length; i++)
             {
-                var vert = Verticies[i];
+                var vert = Vertices[i];
 
-                Verticies[i] = new Vertex(vert.Position, vert.TexCoords);
+                Vertices[i] = new Vertex(vert.Position, vert.TexCoords);
             }
         }
 
         public void MutateWorks()
         {
-            for (var i = 0; i < Verticies.Length; i++)
+            for (var i = 0; i < Vertices.Length; i++)
             {
-                var vert = Verticies[i];
+                var vert = Vertices[i];
 
-                Verticies[i] = new Vertex(vert.Position, new Vector2(-1));
+                Vertices[i] = new Vertex(vert.Position, new Vector2(-1));
             }
         }
     }
