@@ -9,7 +9,7 @@ namespace JitBug
         static void Main()
         {
             // Failure
-            Console.WriteLine("Replacing array element with new struct, position is (erroneously) zero");
+            Console.WriteLine("Replacing array element with new struct directly");
             {
                 var bug = Bug.Create();
                 bug.MutateBroken();
@@ -18,7 +18,7 @@ namespace JitBug
             }
 
             // Works
-            Console.WriteLine("Replacing array element with new struct, data matches provided value");
+            Console.WriteLine("Replacing array element with new struct, stored in a local variable first");
             {
                 var bug = Bug.Create();
                 bug.MutateWorks();
@@ -58,7 +58,9 @@ namespace JitBug
             {
                 var vert = Vertices[i];
 
-                Vertices[i] = new Vertex(vert.Position, new Vector2(-1));
+                var newVert = new Vertex(vert.Position, vert.TexCoords);
+
+                Vertices[i] = newVert;
             }
         }
     }
